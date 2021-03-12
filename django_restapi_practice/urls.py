@@ -16,6 +16,34 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+# # 방법 1
+# from django.conf.urls import include
+# from rest_framework import routers
+# from restful_api.views import UserViewSet as uvs
+
+# 방법 2
+from restful_api import views
+
+##########
+
+
+
+# # 방법 1 에서만 사용
+# router = routers.DefaultRouter()
+# router.register('users', uvs)
+##########
+
+# 장고 Restful API 는 마지막 / 닫아줘야함
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # # 방법 1
+    # path('api/', include(router.urls)),
+
+    # 방법 2
+    path('api/users/', views.user_list),
+    path('api/users/<_id>/', views.user_select),
+
+    ##########
 ]
